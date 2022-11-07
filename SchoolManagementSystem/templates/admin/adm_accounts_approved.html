@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-6">
+            <p class="text-center mt-5 fs-3 fw-bold text-muted fst-italic">
+                Hello {{request.user.first_name}},
+            </p>
+            <p class="text-center fw-bold text-muted">
+                Your Account has not been approved yet!<br><br>Our Administrative Team will be checking it soon.
+                <br><br> And, soon your admission will be confirmed ! You'll get to access the system after the
+                confirmation.
+
+            </p>
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+            <p class="text-center fw-bold text-muted">
+                Thank you for signing up. We'll see you soon.
+            </p>
+            <div class="d-grid gap-2 d-md-block text-center">
+                <a href="{% url 'admin_logout' %}" class="btn btn-danger btn-sm fw-bold" type="submit">Logout</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

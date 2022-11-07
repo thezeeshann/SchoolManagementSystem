@@ -1,0 +1,18 @@
+{% load static %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/navbar.css' %}" />
+</head>
+<nav>
+  <ul>
+    <li class="logo text-muted"><a class="text-decoration-none text-muted" href="{% url 'index_page' %}">School
+        Management
+        System</a></li>
+    <div class="items text-muted">
+      <li><a href="{% url 'index_page' %}" class="text-muted">Home</a></li>
+      <li><a href="" class="text-muted">Features</a></li>
+      <li><a href="" class="text-muted">Blogs</a></li>
+      <li><a href="" class="text-muted">Contact Us</a></li>
+    </div>
+  </ul>
+</nav>

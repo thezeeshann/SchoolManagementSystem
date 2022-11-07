@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- custom csss link-->
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+</head>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col">
+      <div class="image">
+        <img src="{% static 'image\oct_blog_post2.png' %}" class="img-fluid" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Features start -->
+  <div class="row mt-5">
+    <div class="col">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Features</p>
+    </div>
+  </div>
+  <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+  <!-- Features image -->
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-3">
+      <div class="features-img">
+        <a href="{% url 'student_click' %}">
+          <img src="{% static 'image\features\studentadmissions.png' %}" class="img-fluid img-thumbnail" alt="" />
+        </a>
+        <p class="text-center mt-4 fw-bold text-muted">Student</p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="features-img">
+        <a href="{% url 'teacher_click' %}">
+          <img src="{% static 'image/features/staff.png' %}" class="img-fluid img-thumbnail" alt="" />
+        </a>
+        <p class="text-center mt-4 fw-bold text-muted">Teacher</p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="features-img">
+        <a href="{% url 'admin_click' %}">
+          <img src="{% static 'image/features/dashboards.png' %}" class="img-fluid img-thumbnail" alt="" />
+        </a>
+        <p class="text-center mt-4 fw-bold text-muted">Admin</p>
+      </div>
+    </div>
+  </div>
+  <!-- Features end -->
+
+  <!-- Features start 2 -->
+  <div class="row justify-content-center mt-5">
+    <div class="col-sm-3">
+      <div class="features-img">
+        <a href="#">
+          <img src="{% static 'image\features\management-reports.png' %}" class="img-fluid img-thumbnail" alt="" />
+        </a>
+        <p class="text-center mt-4 fw-bold text-muted">Attendance</p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="features-img">
+        <a href="#">
+          <img src="{% static 'image/features/communications.png' %}" class="img-fluid img-thumbnail" alt="" /></a>
+        <p class="text-center mt-4 fw-bold text-muted">Notic</p>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="features-img">
+        <a href="#"><img src="{% static 'image\features\payments-acounting.png' %}"
+            class="img-fluid img-thumbnail" alt="" /></a>
+        <p class="text-center mt-4 fw-bold text-muted">Fees</p>
+      </div>
+    </div>
+  </div>
+  <!-- Features end -->
+
+  <!-- Blogs start -->
+  <div class="row mt-5">
+    <div class="col">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Blogs</p>
+    </div>
+  </div>
+  <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+  <div class="row justify-content-center mt-5">
+    <div class="col-sm-5">
+      <p class="fs-5 text-muted">
+        A school management system is the perfect tool for this since it is a
+        technology-based solution to the organizational and process-driven needs
+        of a school.
+      </p>
+      <p class="fs-5 text-muted">
+        Learn more about how a competent school management system does wonders
+        to your institution.
+      </p>
+      <p class="fs-5 text-muted">
+        "Academy Front" is an easy, focused and comprehensive software solution
+        for educational institutions of all sizes.
+      </p>
+    </div>
+    <div class="col-sm-5">
+      <img src="{% static 'image/mac-book.png' %}" class="img-fluid" alt="" />
+    </div>
+  </div>
+  <!-- Blogs end -->
+
+  <!-- Highlights start -->
+  <div class="row mt-5">
+    <div class="col mt-5">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Highlights</p>
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-sm-2">
+      <div class="features-img">
+        <a href=""><img src="{% static 'image\Highlights\highlyreliable.png' %}" class="img-fluid" alt="" /></a>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <a href=""><img src="{% static 'image\Highlights\customersupport.png' %}" class="img-fluid" alt="" /></a>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <a href=""><img src="{% static 'image\Highlights\safeandsecure.png' %}" class="img-fluid" alt="" /></a>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <a href=""><img src="{% static 'image\Highlights\easy-to-use.png' %}" class="img-fluid" alt="" /></a>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <a href=""><img src="{% static 'image\Highlights\costeffective.png' %}" class="img-fluid" alt="" /></a>
+      </div>
+    </div>
+  </div>
+  <!-- Highlights end -->
+</div>
+
+{% endblock %}
