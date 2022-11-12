@@ -63,7 +63,7 @@ class TeacherForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = 'form-control'
 
 
-# class NoticeForm(forms.ModelForm):
-#     class Meta:
-#         model = Notice
-#         fields = "__all__"
+class NoticeForm(forms.ModelForm):
+    class Meta:
+        model = Notice
+        fields = "__all__"

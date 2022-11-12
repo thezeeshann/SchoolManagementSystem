@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserForm, StudentForm, TeacherForm
+from .forms import UserForm, StudentForm, TeacherForm,NoticeForm
 from .models import User, Student, Teacher, Notice,Attendance
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -106,8 +106,10 @@ def StudentLogOut(request):
 @user_passes_test(check_role_student)
 def StudentAdmin(request):
     student = Student.objects.filter(user_id=request.user.id)
+    notice = Notice.objects.all()
     context = {
-        'student': student
+        'student': student,
+        'notice':notice
     }
     return render(request, 'student/student_admin.html', context)
 
@@ -280,9 +282,133 @@ def AdminDashbord(request):
     }
     return render(request, 'admin/admin_panel.html',context)
 
+# ----------------------------------------------------------- Admin Student --------------------------------------------------------
+
 @login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
 def AdminStudent(request):
     return render(request, 'admin/admin_student.html')
+
+    
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminViewStudent(request):
+    all_student = Student.objects.all().filter(is_approved=True)
+    context = {
+        'all_student':all_student
+    }
+    return render(request,'admin/admin_view_student.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminAddStudent(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        stu_form = StudentForm(request.POST)
+        if form.is_valid() and stu_form.is_valid():
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = User.objects.create_user(
+                username=username, first_name=first_name, last_name=last_name, email=email, password=password)
+            user.role = User.STUDENT
+            user.save()
+            student = stu_form.save(commit=False)
+            student.user = user
+            student.save()
+            messages.success(request, 'Your account has been registered successfully.')
+            form = UserForm()
+            stu_form = StudentForm()
+    else:
+        form = UserForm()
+        stu_form = StudentForm()
+    context = {
+        'form': form,
+        'stu_form': stu_form
+    }
+    return render(request,'admin/admin_add_student.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def UpdateStudentSchool(request,pk):
+    if request.method == "POST":
+        student = Student.objects.get(id=pk)
+        user = User.objects.get(id=student.user_id)
+        form = UserForm(request.POST,instance=user)
+        stu_form = StudentForm(request.POST,instance=student)
+        if form.is_valid() and stu_form.is_valid():
+            form.save()
+            student = stu_form.save(commit=False)
+            student.form = form
+            student.save()
+            messages.success(request, 'Student Update successfully.')
+        else:
+            messages.error(request,'Something Wrong')
+    else:
+        student = Student.objects.get(id=pk)
+        user = User.objects.get(id=student.user_id)
+        form = UserForm(instance=user)
+        stu_form = StudentForm(instance=student)
+    context = {
+        'form':form,
+        'stu_form':stu_form
+    }
+    return render(request,'admin/admin_update_student.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def DeleteStudentSchool(request,pk):
+    student = Student.objects.get(id=pk)
+    user = User.objects.get(id=student.user_id)
+    user.delete()
+    student.delete()
+    return redirect('admin_view_student')
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminViewStudentFees(request):
+    all_student_fees = Student.objects.all().filter(is_approved=True)
+    context = {
+        'all_student_fees':all_student_fees
+    }
+    return render(request,'admin/admin_view_student_fees.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminApproveStudent(request):
+    student_approve = Student.objects.all().filter(is_approved=False)
+    context = {
+        'student_approve':student_approve
+    }
+    return render(request,'admin/admin_approve_student.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def ApproveStudent(request,pk):
+    student = Student.objects.get(id=pk)
+    student.is_approved = True
+    student.save()
+    return redirect('admin_approve_student')
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def DeleteStudent(request,pk):
+    student = Student.objects.get(id=pk)
+    user = User.objects.get(id=student.user_id)
+    user.delete()
+    student.delete()
+    return redirect('admin_approve_student')
+
+# --------------------------------------------------------- Admin Teacher -------------------------------------------------------------
 
 @login_required(login_url='admin_login')
 def AdminTeacher(request):
@@ -308,21 +434,21 @@ def AdminAttendance(request):
 @login_required(login_url='admin_login')
 @user_passes_test(check_role_admin)
 def AdminNotice(request):
-    # if request.method == "POST":
-    #     form = NoticeForm(request.POST)
-    #     print(form)
-    #     if form.is_valid():
-    #         form.save(commit=False)
-    #         form.by = request.user.first_name
-    #         form.save()
-    #         form = NoticeForm()
-    #         messages.success(request,'Your Message Successfully Send')
-    #         return redirect('admin_panel')
-    #     else:
-    #         messages.error(request,'Something Wrong')
-    # else:
-    #     form = NoticeForm()
-    # context = {
-    #     'form':form
-    # }
-    return render(request, 'admin/admin_notice.html')
+    if request.method == "POST":
+        form = NoticeForm(request.POST)
+        print(form)
+        if form.is_valid():
+            form.save(commit=False)
+            form.by = request.user.first_name
+            form.save()
+            form = NoticeForm()
+            messages.success(request,'Your Message Successfully Send')
+            return redirect('admin_panel')
+        else:
+            messages.error(request,'Something Wrong')
+    else:
+        form = NoticeForm()
+    context = {
+        'form':form
+    }
+    return render(request, 'admin/admin_notice.html',context)
