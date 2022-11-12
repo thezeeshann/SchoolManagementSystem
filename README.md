@@ -25,3 +25,9 @@ If you have any feedback. please reach out to me at info.zeeshanshaikh@gmail.com
 ![screencapture-127-0-0-1-8000-adminsignup-2022-11-05-13_16_04](https://user-images.githubusercontent.com/88139550/200179768-96caa5b5-9759-4e00-ab42-57e8da1d89b3.png)
 
 ![screencapture-127-0-0-1-8000-adminlogin-2022-11-05-13_16_17](https://user-images.githubusercontent.com/88139550/200179774-0d5ea541-b7da-4607-aebe-49df7919572e.png)
+
+![screencapture-127-0-0-1-8000-adminpanel-2022-11-12-22_22_37](https://user-images.githubusercontent.com/88139550/201485390-b7b17b15-fe39-4fd9-8d8a-6b3dedbf9455.png)
+
+![screencapture-127-0-0-1-8000-adminteacher-2022-11-12-16_27_13](https://user-images.githubusercontent.com/88139550/201485400-e06eba6a-93ec-4286-9332-1022830d0fe5.png)
+
+![screencapture-127-0-0-1-8000-adminstudent-2022-11-12-16_26_58](https://user-images.githubusercontent.com/88139550/201485405-92a53996-b05e-4ced-8ec4-dd28739e8dec.png)
