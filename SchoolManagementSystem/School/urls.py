@@ -27,6 +27,7 @@ urlpatterns = [
     path('adminlogin/', views.AdminLogin, name='admin_login'),
     path('adminlogout/',views.AdminLogOut,name='admin_logout'),
     path('adminpanel/', views.AdminDashbord, name='admin_panel'),
+
     # ------------------------- Admin Student --------------------
     path('adminstudent/', views.AdminStudent, name='admin_student'),
     path('admin-view-student/',views.AdminViewStudent,name='admin_view_student'),
@@ -37,8 +38,21 @@ urlpatterns = [
     path('delete-student/<int:pk>/',views.DeleteStudent,name='delete_student'),
     path('update-student-school/<int:pk>/',views.UpdateStudentSchool,name='update_student_school'),
     path('delete-student-school/<int:pk>/',views.DeleteStudentSchool,name='delete_student_school'),
+
     # --------------------------- Admin Teacher --------------------
     path('adminteacher/', views.AdminTeacher, name='admin_teacher'),
+    path('admin-view-teacher/',views.AdminViewTeacher,name='admin_view_teacher'),
+    path('admin-add-teacher/',views.AdminAddTeacher,name='admin_add_teacher'),
+    path('admin-approve-teacher/',views.AdminApproveTeacher,name='admin_approve_teacher'),
+    path('admin-view-teacher-salary/',views.AdminViewTeacherSalary,name='admin_view_teacher_salary'),
+    path('update-teacher-school/<int:pk>/',views.UpdateTeacherSchool,name='update_teacher_school'),
+    path('delete-teacher-school/<int:pk>/',views.DeleteTeacherSchool,name='delete_teacher_school'),
+    path('approve-teacher/<int:pk>/',views.ApproveTeacher,name='approve_teacher'),
+    path('delete-teacher/<int:pk>/',views.DelteTeacher,name='delete_teacher'),
+
+
+
+    # ------------------------- Admin Others --------------------
     path('adminfees/', views.AdminFees, name='admin_fees'),
     path('adminattendance/', views.AdminAttendance, name='admin_attendance'),
     path('adminnotice/', views.AdminNotice, name='admin_notice'),

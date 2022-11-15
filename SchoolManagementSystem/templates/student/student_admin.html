@@ -22,7 +22,7 @@
           <hr />
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="text-center">
-              <a href="" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+              <a href="{% url 'student_admin' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
                 <i class="bi bi-house fs-4 p-1 text-dark"></i>
                 Dashboard
               </a>
@@ -52,9 +52,9 @@
         <div class="col-sm-3">
           <a href="#" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Division</div>
+              <div class="card-header fw-bold text-center">Division</div>
               <div class="card-body">
-                <h6 class="card-title">{{stu.divisions|title}}</h6>
+                <h6 class="card-title text-center">{{stu.divisions|title}}</h6>
               </div>
             </div>
           </a>
@@ -62,9 +62,9 @@
         <div class="col-sm-3">
           <a href="" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Contact</div>
+              <div class="card-header fw-bold text-center">Contact</div>
               <div class="card-body">
-                <h6 class="card-title">{{stu.phone_number}}</h6>
+                <h6 class="card-title text-center">{{stu.phone_number}}</h6>
               </div>
             </div>
           </a>
@@ -72,9 +72,9 @@
         <div class="col-sm-3">
           <a href="" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Roll No</div>
+              <div class="card-header fw-bold text-center">Roll No</div>
               <div class="card-body">
-                <h6 class="card-title">{{stu.roll_no}}</h6>
+                <h6 class="card-title text-center">{{stu.roll_no}}</h6>
               </div>
             </div>
           </a>
@@ -82,9 +82,9 @@
         <div class="col-sm-3">
           <a href="#" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Fees</div>
+              <div class="card-header fw-bold text-center">Fees</div>
               <div class="card-body">
-                <h6 class="card-title">{{stu.fees}}</h6>
+                <h6 class="card-title text-center">{{stu.fees}}</h6>
               </div>
             </div>
           </a>

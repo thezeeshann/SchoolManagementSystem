@@ -341,7 +341,9 @@ def UpdateStudentSchool(request,pk):
         form = UserForm(request.POST,instance=user)
         stu_form = StudentForm(request.POST,instance=student)
         if form.is_valid() and stu_form.is_valid():
-            form.save()
+            user = form.save()
+            user.set_password(user.password)
+            user.save()
             student = stu_form.save(commit=False)
             student.form = form
             student.save()
@@ -411,8 +413,130 @@ def DeleteStudent(request,pk):
 # --------------------------------------------------------- Admin Teacher -------------------------------------------------------------
 
 @login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
 def AdminTeacher(request):
-    return render(request, 'admin/admin_teacher.html',)
+    return render(request, 'admin/admin_teacher.html')
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminViewTeacher(request):
+    teacher = Teacher.objects.all().filter(is_approved=True)
+    context = {
+        'teacher':teacher
+    }
+    return render(request,'admin/teachers/admin_view_teacher.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def UpdateTeacherSchool(request,pk):
+    if request.method == "POST":
+        teacher = Teacher.objects.get(id=pk)
+        user = User.objects.get(id=teacher.user_id)
+        form = UserForm(request.POST,instance=user)
+        teac_form = TeacherForm(request.POST,instance=teacher)
+        if form.is_valid() and teac_form.is_valid():
+            user = form.save()
+            user.set_password(user.password)
+            user.save()
+            teacher = teac_form.save(commit=False)
+            teacher.form = form
+            teacher.save()
+            messages.success(request, 'Teacher Update successfully.')
+        else:
+            messages.error(request,'Something Wrong')
+    else:
+        teacher = Teacher.objects.get(id=pk)
+        user = User.objects.get(id=teacher.user_id)
+        form = UserForm(instance=user)
+        teac_form = TeacherForm(instance=teacher)
+    context = {
+        'form':form,
+        'teac_form':teac_form
+    }
+    return render(request,'admin/teachers/admin_update_teacher.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def DeleteTeacherSchool(request,pk):
+    teacher = Teacher.objects.get(id=pk)
+    user = User.objects.get(id=teacher.user_id)
+    teacher.delete()
+    user.delete()
+    return redirect('admin_view_teacher')
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminAddTeacher(request):
+    if request.method == "POST":
+        form = UserForm(request.POST)
+        teac_form = TeacherForm(request.POST)
+        if form.is_valid() and teac_form.is_valid():
+            username = form.cleaned_data['username']
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            password = form.cleaned_data['password']
+            user = User.objects.create_user(
+                username=username, first_name=first_name, last_name=last_name, email=email, password=password)
+            user.role = User.TEACHER
+            user.save()
+            teacher = teac_form.save(commit=False)
+            teacher.user = user
+            teacher.save()
+            messages.success(request, 'Your account has been registered successfully.')
+            form = UserForm()
+            teac_form = TeacherForm()
+    else:
+        form = UserForm()
+        teac_form = TeacherForm()
+    context = {
+        'form':form,
+        'teac_form':teac_form
+    }
+    return render(request,'admin/teachers/admin_add_teacher.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminApproveTeacher(request):
+    teacher_approve = Teacher.objects.all().filter(is_approved=False)
+    context= {
+        'teacher_approve':teacher_approve
+    }
+    return render(request,'admin/teachers/admin_approve_teacher.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def ApproveTeacher(request,pk):
+    teacher = Teacher.objects.get(id=pk)
+    teacher.is_approved = True
+    teacher.save()
+    return redirect('admin_approve_teacher')
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def DelteTeacher(request,pk):
+    teacher = Teacher.objects.get(id=pk)
+    user = User.objects.get(id=teacher.user_id)
+    user.delete()
+    teacher.delete()
+    return redirect('admin_approve_teacher')
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminViewTeacherSalary(request):
+    teacher_salary = Teacher.objects.all().filter(is_approved=True)
+    context = {
+        'teacher_salary':teacher_salary
+    }
+    return render(request,'admin/teachers/admin_view_teacher_salary.html',context)
 
 
 # ------------------------------------------- Fees -------------------------------------------------------------------------

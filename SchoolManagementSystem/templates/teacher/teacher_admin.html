@@ -22,7 +22,7 @@
           <hr />
           <ul class="nav nav-pills flex-column mb-auto">
             <li class="text-center">
-              <a href="" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+              <a href="{% url 'teacher_admin' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
                 <i class="bi bi-house fs-4 p-1 text-dark"></i>
                 Dashboard
               </a>
@@ -33,6 +33,13 @@
                 Attendance
               </a>
             </li>
+          </li>
+          <li class="text-center">
+            <a href="" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+              <i class="bi bi-megaphone text-dark fs-4 p-1"></i>
+              Notice
+            </a>
+          </li>
             <li class="text-center">
               <a href="{% url 'teacher_logout' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
                 <i class="bi bi-lock text-dark fs-4 p-1"></i>
@@ -52,9 +59,9 @@
         <div class="col-sm-3">
           <a href="#" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Name</div>
+              <div class="card-header fw-bold text-center">Name</div>
               <div class="card-body">
-                <h6 class="card-title">{{user.full_name}}</h6>
+                <h6 class="card-title text-center">{{user.first_name}}</h6>
               </div>
             </div>
           </a>
@@ -62,9 +69,9 @@
         <div class="col-sm-3">
           <a href="" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Contact</div>
+              <div class="card-header fw-bold text-center">Contact</div>
               <div class="card-body">
-                <h6 class="card-title">{{tea.phone_number}}</h6>
+                <h6 class="card-title text-center">{{tea.phone_number}}</h6>
               </div>
             </div>
           </a>
@@ -72,9 +79,9 @@
         <div class="col-sm-3">
           <a href="" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Join date</div>
+              <div class="card-header fw-bold text-center">Join date</div>
               <div class="card-body">
-                <h6 class="card-title">{{user.date_joined|date:"jS M Y"}}</h6>
+                <h6 class="card-title text-center">{{user.date_joined|date:"M d, Y"}}</h6>
               </div>
             </div>
           </a>
@@ -82,9 +89,9 @@
         <div class="col-sm-3">
           <a href="#" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
-              <div class="card-header fw-bold">Salary</div>
+              <div class="card-header fw-bold text-center">Salary</div>
               <div class="card-body">
-                <h6 class="card-title">{{tea.salary}}</h6>
+                <h6 class="card-title text-center">{{tea.salary}}</h6>
               </div>
             </div>
           </a>

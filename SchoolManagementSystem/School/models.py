@@ -135,7 +135,7 @@ class Teacher(models.Model):
         return self.user.email
 
     def full_name(self):
-        return f'{self.user.first_name}, {self.user.last_name}'
+        return f'{self.user.first_name} {self.user.last_name}'
 
 
 class Notice(models.Model):

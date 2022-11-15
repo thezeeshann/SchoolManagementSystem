@@ -10,7 +10,7 @@
       <!-- 1 card start  -->
       <div class="row">
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'admin_view_teacher' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">Total Teacher <br><br> <span>{{teachers_counts}}</span> </div>
               <div class="card-body">
@@ -20,7 +20,7 @@
           </a>
         </div>
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'admin_view_student' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">Total Student <br><br> <span>{{student_count}} </div>
               <div class="card-body">
@@ -30,7 +30,7 @@
           </a>
         </div>
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'admin_view_teacher_salary' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">Teacher Salary <br><br> <span>{{teachers_salary}}</span></div>
               <div class="card-body">
@@ -40,7 +40,7 @@
           </a>
         </div>
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'admin_view_student_fees' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">Student Fees <br><br> <span>{{student_fees}} </span></div>
               <div class="card-body">
@@ -53,7 +53,7 @@
         <!-- 2 card start -->
 
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'admin_approve_teacher' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">Pnding Teacher <br><br> <span>{{pending_teacher}} </span> </div>
               <div class="card-body">
@@ -63,7 +63,7 @@
           </a>
         </div>
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'admin_approve_student' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">Pnding Student <br><br> <span>{{pending_student}} </span> </div>
               <div class="card-body">
@@ -73,7 +73,7 @@
           </a>
         </div>
         <div class="col-sm-3">
-          <a href="#" class="text-decoration-none">
+          <a href="{% url 'admin_approve_teacher' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">pending Salary <br><br> <span>{{pending_teacher_salary}} </span> </div>
               <div class="card-body">
@@ -83,7 +83,7 @@
           </a>
         </div>
         <div class="col-sm-3">
-          <a href="" class="text-decoration-none">
+          <a href="{% url 'admin_approve_student' %}" class="text-decoration-none">
             <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
               <div class="card-header text-center fw-bold">pending Fees <br><br> <span>{{pending_student_fees}}</span></div>
               <div class="card-body">
