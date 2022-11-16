@@ -543,14 +543,25 @@ def AdminViewTeacherSalary(request):
 @login_required(login_url='admin_login')
 @user_passes_test(check_role_admin)
 def AdminFees(request):
-    return render(request, 'admin/admin_fees.html')
+    return render(request, 'admin/other/admin_fees.html')
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminViewFees(request,divisions):
+    student_fees = Student.objects.all().filter(divisions=divisions)
+    context = {
+        'student_fees':student_fees,
+        'divisions':divisions
+    }
+    return render(request,'admin/other/admin_view_fees.html',context)
 
 
 # ------------------------------------------- Attendance -------------------------------------------------------------------
 @login_required(login_url='admin_login')
 @user_passes_test(check_role_admin)
 def AdminAttendance(request):
-    return render(request, 'admin/admin_attendance.html')
+    return render(request, 'admin/other/admin_attendance.html')
 
 
 # ------------------------------------------- Notice -----------------------------------------------------------------------
@@ -575,4 +586,4 @@ def AdminNotice(request):
     context = {
         'form':form
     }
-    return render(request, 'admin/admin_notice.html',context)
+    return render(request, 'admin/other/admin_notice.html',context)

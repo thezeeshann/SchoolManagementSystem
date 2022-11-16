@@ -54,6 +54,7 @@ urlpatterns = [
 
     # ------------------------- Admin Others --------------------
     path('adminfees/', views.AdminFees, name='admin_fees'),
+    path('admin-view-fees/<str:divisions>/',views.AdminViewFees,name='admin_view_fees'),
     path('adminattendance/', views.AdminAttendance, name='admin_attendance'),
     path('adminnotice/', views.AdminNotice, name='admin_notice'),
 
