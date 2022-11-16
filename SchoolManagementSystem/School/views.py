@@ -287,7 +287,7 @@ def AdminDashbord(request):
 @login_required(login_url='admin_login')
 @user_passes_test(check_role_admin)
 def AdminStudent(request):
-    return render(request, 'admin/admin_student.html')
+    return render(request, 'admin/student/admin_student.html')
 
     
 @login_required(login_url='admin_login')
@@ -297,7 +297,7 @@ def AdminViewStudent(request):
     context = {
         'all_student':all_student
     }
-    return render(request,'admin/admin_view_student.html',context)
+    return render(request,'admin/student/admin_view_student.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -329,7 +329,7 @@ def AdminAddStudent(request):
         'form': form,
         'stu_form': stu_form
     }
-    return render(request,'admin/admin_add_student.html',context)
+    return render(request,'admin/student/admin_add_student.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -359,7 +359,7 @@ def UpdateStudentSchool(request,pk):
         'form':form,
         'stu_form':stu_form
     }
-    return render(request,'admin/admin_update_student.html',context)
+    return render(request,'admin/student/admin_update_student.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -379,7 +379,7 @@ def AdminViewStudentFees(request):
     context = {
         'all_student_fees':all_student_fees
     }
-    return render(request,'admin/admin_view_student_fees.html',context)
+    return render(request,'admin/student/admin_view_student_fees.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -389,7 +389,7 @@ def AdminApproveStudent(request):
     context = {
         'student_approve':student_approve
     }
-    return render(request,'admin/admin_approve_student.html',context)
+    return render(request,'admin/student/admin_approve_student.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -415,7 +415,7 @@ def DeleteStudent(request,pk):
 @login_required(login_url='admin_login')
 @user_passes_test(check_role_admin)
 def AdminTeacher(request):
-    return render(request, 'admin/admin_teacher.html')
+    return render(request, 'admin/teacher/admin_teacher.html')
 
 
 @login_required(login_url='admin_login')
@@ -425,7 +425,7 @@ def AdminViewTeacher(request):
     context = {
         'teacher':teacher
     }
-    return render(request,'admin/teachers/admin_view_teacher.html',context)
+    return render(request,'admin/teacher/admin_view_teacher.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -455,7 +455,7 @@ def UpdateTeacherSchool(request,pk):
         'form':form,
         'teac_form':teac_form
     }
-    return render(request,'admin/teachers/admin_update_teacher.html',context)
+    return render(request,'admin/teacher/admin_update_teacher.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -497,7 +497,7 @@ def AdminAddTeacher(request):
         'form':form,
         'teac_form':teac_form
     }
-    return render(request,'admin/teachers/admin_add_teacher.html',context)
+    return render(request,'admin/teacher/admin_add_teacher.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -507,7 +507,7 @@ def AdminApproveTeacher(request):
     context= {
         'teacher_approve':teacher_approve
     }
-    return render(request,'admin/teachers/admin_approve_teacher.html',context)
+    return render(request,'admin/teacher/admin_approve_teacher.html',context)
 
 
 @login_required(login_url='admin_login')
@@ -536,7 +536,7 @@ def AdminViewTeacherSalary(request):
     context = {
         'teacher_salary':teacher_salary
     }
-    return render(request,'admin/teachers/admin_view_teacher_salary.html',context)
+    return render(request,'admin/teacher/admin_view_teacher_salary.html',context)
 
 
 # ------------------------------------------- Fees -------------------------------------------------------------------------
