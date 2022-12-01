@@ -106,13 +106,13 @@
         <div class="col-sm-8 offset-2 mt-3">
           <div class="card">
             <h6 class="card-header fw-bold text-muted">
-              {{noti.date|date:"M d, Y"}}
-              <span class="float-end fw-bold text-muted">By : {{noti.by}}</span>
+              {{noti.date}}
+              <span class="float-end fw-bold text-muted">By -  {{ noti.post_by.username }}</span>
             </h6>
             <div class="card-body">
               <h6 class="card-title text-muted">
-                {{noti.message}}
-                <a href="#" type="submit" class="float-end btn btn-danger btn-sm fw-bold">Delete</a>
+                {{noti.message|capfirst}}
+                <span class="float-end fw-bold text-muted"><a href="{% url 'admin_delete_notice' noti.id %}" onclick="return confirm('Are you sour you want to delete? ')" ><i class="text-danger fs-4 bi bi-trash-fill"></i></a></span>
               </h6>
             </div>
           </div>

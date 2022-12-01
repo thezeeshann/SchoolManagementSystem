@@ -78,15 +78,14 @@
       <div class="card mt-3">
         <div class="card-body  mt-3">
           {% include 'include/alert.html' %}
-          <form action="" method="POST">
+          <form method="POST">
             {% csrf_token %}
             <div class="row">
               <div class="col-sm-12">
                 <div class="mb-3">
                   <label for="email" class="fs-5 text-muted">Write Your Message Here...</label>
                   <textarea class="form-control" aria-label="With textarea" name="message" id="" cols="5"
-                    rows="3"></textarea>
-                  <input type="hidden" name="by">
+                    rows="2"></textarea>
                 </div>
               </div>
             </div>

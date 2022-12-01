@@ -54,6 +54,9 @@
       white-space: nowrap;
       -webkit-overflow-scrolling: touch;
     }
+    table{
+      border-collapse: collapse;
+    }
   </style>
 </head>
 
@@ -64,48 +67,51 @@
 
     {% include 'include/side_nav.html' %}
 
+
     <!-- cards -->
     <div class="col-sm-8">
 
+
+
       <div class="row">
         <div class="col">
-          <p class="text-center fs-3 fw-bold text-muted fst-italic">Fees Of The Class {{divisions|title}}</p>
-          <ul class="nav justify-content-center border-bottom  mb-3"></ul>
+          <p class="text-center fs-3 fw-bold text-muted fst-italic">Attendance</p>
+          <ul class="nav justify-content-center border-bottom mb-3"></ul>
         </div>
       </div>
 
-
-      <table class="table table-bordered mt-3">
-        {% if student_fees %}
+      <table class="table table-bordered mt-3" >
+        <div>{% include 'include/alert.html' %}</div>
+        {% if students %}
         <thead>
           <tr class="text-center fs-5 text-muted">
-            <th scope="col">Name</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Roll</th>
-            <th scope="col">Fees</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Take Attendance</th>
           </tr>
         </thead>
        
-        {% for fees in student_fees %}
-        <tbody class="text-center">
+        <form method="post" >
+          {%csrf_token%}
+            {% for student in students %}
+          <tbody class="text-center">
+            <tr>
+              <td name="student">{{student.full_name|title}}</td>
+              <td style="width: 40%;">{{atten_student.status}}</td>
+            </tr>
+            {% endfor %}  
+          </tbody>
 
-          <tr>
-            <td>{{fees.full_name}}</td>
-            <td>{{fees.phone_number}}</td>
-            <td>{{fees.roll_no}}</td>
-            <td>{{fees.fees}}</td>
-          </tr>
-          {% endfor %}
-          {% else %}
+        </form>
+        {% else %}
+          <!-- else part -->
           <div class="row">
             <div class="col">
               <p class="text-center fw-bold text-muted mt-3">No Student found yet!</p>
             </div>
           </div>
-          {% endif %}
-        </tbody>
-      </table>
 
+        {% endif %}
+      </table>
     </div>
 
   </div>

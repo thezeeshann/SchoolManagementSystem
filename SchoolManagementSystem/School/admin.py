@@ -29,11 +29,11 @@ class TeacherAdmin(admin.ModelAdmin):
 admin.site.register(Teacher, TeacherAdmin)
 
 class AttendanceAdmin(admin.ModelAdmin):
-    list_display = ('roll_no','date','status')
+    list_display = ('student','date','status')
 
 admin.site.register(Attendance,AttendanceAdmin)
 
 class NoticeAdmin(admin.ModelAdmin):
-    list_display = ('message','date','by')
+    list_display = ('message','date','post_by')
 
 admin.site.register(Notice,NoticeAdmin)

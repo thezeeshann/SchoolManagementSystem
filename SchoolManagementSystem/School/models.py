@@ -118,7 +118,7 @@ class Student(models.Model):
     is_approved = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.email
+        return str(self.user.first_name)
 
     def full_name(self):
         return f'{self.user.first_name} {self.user.last_name}'
@@ -141,10 +141,10 @@ class Teacher(models.Model):
 class Notice(models.Model):
     message = models.CharField(max_length=100, unique=True)
     date = models.DateTimeField(auto_now_add=True)
-    by = models.CharField(max_length=10)
+    post_by = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
 
     def __str__(self):
-        return self.message
+        return str(self.post_by)
 
 
 attendance_satus = (
@@ -154,10 +154,10 @@ attendance_satus = (
 
 
 class Attendance(models.Model):
-    roll_no = models.IntegerField()
+    student = models.ForeignKey(Student,on_delete=models.CASCADE,null=True,blank=True)
     date = models.DateTimeField(auto_now_add=True)
     status = models.CharField(choices=attendance_satus,
                               default='present', max_length=10)
 
-    def __str__(self):
-        return self.roll_no
+    # def __str__(self):
+    #     return self.student.first_name

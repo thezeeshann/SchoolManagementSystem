@@ -19,6 +19,8 @@ urlpatterns = [
     path('teachersingup/', views.TeacherSingup, name='teacher_signup'),
     path('teacherlogin/', views.TeacherLogin, name='teacher_login'),
     path('teacheradmin/', views.TeacherAdmin, name='teacher_admin'),
+    path('teachernotice/',views.TeacherNotice,name='teacher_notice'),
+    path('teacherdeletenotice/<int:pk>/',views.TeacherDeleteNotice,name='teacher_delete_notice'),
     path('teacherlogout/', views.TeacherLogOut, name='teacher_logout'),
 
     # -------------------------- Admin ----------------------
@@ -56,7 +58,10 @@ urlpatterns = [
     path('adminfees/', views.AdminFees, name='admin_fees'),
     path('admin-view-fees/<str:divisions>/',views.AdminViewFees,name='admin_view_fees'),
     path('adminattendance/', views.AdminAttendance, name='admin_attendance'),
+    path('admintakeattendance/<str:divisions>/',views.AdminTakeAttendance,name='admin_take_attendance'),
+    path('adminviewattendance/<str:divisions>/',views.AdminViewAttendance,name='admin_view_attendance'),
     path('adminnotice/', views.AdminNotice, name='admin_notice'),
+    path('adminnoticedelete/<int:pk>/',views.AdminDeleteNotice,name='admin_delete_notice')
 
 
 ]

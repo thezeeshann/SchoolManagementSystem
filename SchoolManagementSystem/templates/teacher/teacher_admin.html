@@ -35,7 +35,7 @@
             </li>
           </li>
           <li class="text-center">
-            <a href="" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+            <a href="{% url 'teacher_notice' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
               <i class="bi bi-megaphone text-dark fs-4 p-1"></i>
               Notice
             </a>
@@ -98,6 +98,35 @@
         </div>
         {% endfor %}
       </div>
+
+      <!-- notice -->
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+
+      <div class="row mt-3">
+        <div class="col">
+          <p class="text-center fs-3 fw-bold text-muted fst-italic">Notice</p>
+        </div>
+      </div>
+
+      <div class="row">
+       {% for noti in notice %}
+        <div class="col-sm-8 offset-2 mt-3">
+          <div class="card">
+            <h6 class="card-header fw-bold text-muted">
+              {{noti.date}}
+              <span class="float-end fw-bold text-muted">By -  {{ noti.post_by.username }}</span>
+            </h6>
+            <div class="card-body">
+              <h6 class="card-title text-muted">
+                {{noti.message|capfirst}}
+                <span class="float-end fw-bold text-muted"><a href="{% url 'teacher_delete_notice' noti.id %}" onclick="return confirm('Are you sour you want to delete? ')" ><i class="text-danger fs-4 bi bi-trash-fill"></i></a></span>
+              </h6>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
     </div>
 
   </div>

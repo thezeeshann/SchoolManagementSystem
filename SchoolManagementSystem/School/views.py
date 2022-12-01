@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import UserForm, StudentForm, TeacherForm,NoticeForm
+from .forms import UserForm, StudentForm, TeacherForm,NoticeForm,AttendanceForm
 from .models import User, Student, Teacher, Notice,Attendance
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
@@ -179,12 +179,41 @@ def TeacherLogin(request):
 @user_passes_test(check_role_teacher)
 def TeacherAdmin(request):
     teacher = Teacher.objects.filter(user_id=request.user.id)
+    notice = Notice.objects.all().order_by('-date')
     context = {
-        'teacher': teacher
+        'teacher': teacher,
+        'notice':notice
     }
     return render(request, 'teacher/teacher_admin.html',context)
 
-# @login_required(login_url='teacher_login')
+
+@login_required(login_url='teacher_login')
+@user_passes_test(check_role_teacher)
+def TeacherNotice(request):
+    if request.method == "POST":
+        form = NoticeForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            post_by = request.user
+            data = Notice(message=message,post_by=post_by)
+            data.save()
+            return redirect('teacher_admin')
+        else:
+            messages.error(request,'Something Wrong')
+    else:
+        form = NoticeForm()
+    context = {
+        'form':form
+    }
+    return render(request,'teacher/teacher_notice.html',context)
+
+
+def TeacherDeleteNotice(request,pk):
+    teacher_delete_notice = Notice.objects.get(id=pk)
+    teacher_delete_notice.delete()
+    return redirect('teacher_admin')
+
+
 def TeacherLogOut(request):
     logout(request)
     messages.success(request, 'You are logged out.')
@@ -266,7 +295,9 @@ def AdminDashbord(request):
     pending_student = Student.objects.filter(is_approved=False).count()
     pending_student_fees = Student.objects.filter(is_approved=False).aggregate(Sum('fees'))
     # notice
-    notice = Notice.objects.all()
+    notice = Notice.objects.all().order_by('-date')
+   
+    
 
     context = {
         'teachers_counts':teachers_counts,
@@ -277,7 +308,8 @@ def AdminDashbord(request):
         'student_fees':student_fees['fees__sum'],
         'pending_student':pending_student,
         'pending_student_fees':pending_student_fees['fees__sum'],
-        'notice':notice
+        'notice':notice,
+
 
     }
     return render(request, 'admin/admin_panel.html',context)
@@ -564,6 +596,40 @@ def AdminAttendance(request):
     return render(request, 'admin/other/admin_attendance.html')
 
 
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminTakeAttendance(request,divisions):
+    students = Student.objects.all().filter(divisions=divisions)
+    atten_student = AttendanceForm()
+    if request.method == "POST":
+        atten_student = AttendanceForm(request.POST)
+        if atten_student.is_valid():
+            student = atten_student.cleaned_data['student']
+            status = atten_student.cleaned_data['status']
+            print(student,status)
+            atten_student.save()
+            return redirect('admin_attendance')
+        else:
+            messages.error(request,'Something Wrong')
+    else:
+        atten_student = AttendanceForm()
+    context = {
+        'students':students,
+        'atten_student':atten_student
+    }
+    return render(request,'admin/other/admin_take_attendance.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminViewAttendance(request,divisions):
+    students = Student.objects.all().filter(divisions=divisions)
+    context = {
+        'students':students
+    }
+    return render(request,'admin/other/admin_view_attendance.html',context)
+
+
 # ------------------------------------------- Notice -----------------------------------------------------------------------
 
 @login_required(login_url='admin_login')
@@ -571,13 +637,11 @@ def AdminAttendance(request):
 def AdminNotice(request):
     if request.method == "POST":
         form = NoticeForm(request.POST)
-        print(form)
         if form.is_valid():
-            form.save(commit=False)
-            form.by = request.user.first_name
-            form.save()
-            form = NoticeForm()
-            messages.success(request,'Your Message Successfully Send')
+            message = form.cleaned_data['message']
+            post_by = request.user
+            data = Notice(message=message,post_by=post_by)
+            data.save()
             return redirect('admin_panel')
         else:
             messages.error(request,'Something Wrong')
@@ -587,3 +651,11 @@ def AdminNotice(request):
         'form':form
     }
     return render(request, 'admin/other/admin_notice.html',context)
+
+
+@login_required(login_url='admin_login')
+@user_passes_test(check_role_admin)
+def AdminDeleteNotice(request,pk):
+    delete_notice = Notice.objects.get(id=pk)
+    delete_notice.delete()
+    return redirect('admin_panel')

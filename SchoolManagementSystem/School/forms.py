@@ -66,4 +66,10 @@ class TeacherForm(forms.ModelForm):
 class NoticeForm(forms.ModelForm):
     class Meta:
         model = Notice
+        fields = ('message',)
+
+
+class AttendanceForm(forms.ModelForm):
+    class Meta:
+        model = Attendance
         fields = "__all__"

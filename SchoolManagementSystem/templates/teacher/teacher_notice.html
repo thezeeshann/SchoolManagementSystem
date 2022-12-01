@@ -1,0 +1,93 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<style>
+  .avtaar-img {
+    clip-path: circle();
+    width: 200px;
+    height: auto;
+  }
+</style>
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    <!-- side navbar -->
+
+    <div class="col-sm-4">
+      <main class="d-flex flex-nowrap">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" style="width: 300px; height: 600px">
+          <div class="text-center">
+            <img src="{% static 'image\3.png' %}" class="img-fluid avtaar-img" alt="">
+          </div>
+          <span class="fs-5 fw-bold mt-3 text-center text-muted">{{user.full_name|title}}</span>
+          <hr />
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="text-center">
+              <a href="{% url 'teacher_admin' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+                <i class="bi bi-house fs-4 p-1 text-dark"></i>
+                Dashboard
+              </a>
+            </li>
+            <li class="text-center">
+              <a href="" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+                <i class="bi bi-receipt-cutoff text-dark fs-4 p-1"></i>
+                Attendance
+              </a>
+            </li>
+          </li>
+          <li class="text-center">
+            <a href="{% url 'teacher_notice' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+              <i class="bi bi-megaphone text-dark fs-4 p-1"></i>
+              Notice
+            </a>
+          </li>
+            <li class="text-center">
+              <a href="{% url 'teacher_logout' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+                <i class="bi bi-lock text-dark fs-4 p-1"></i>
+                Log Out
+              </a>
+            </li>
+          </ul>
+        </div>
+      </main>
+    </div>
+
+        <!-- cards -->
+        <div class="col-sm-8">
+
+
+            <div class="row">
+              <div class="col">
+                <p class="text-center fs-3 fw-bold text-muted fst-italic">Announce Something</p>
+                <ul class="nav justify-content-center border-bottom mb-3"></ul>
+              </div>
+            </div>
+      
+            <div class="card mt-3">
+              <div class="card-body  mt-3">
+                {% include 'include/alert.html' %}
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="mb-3">
+                        <label for="email" class="fs-5 text-muted">Write Your Message Here...</label>
+                        <textarea class="form-control" aria-label="With textarea" name="message" id="" cols="5"
+                          rows="2"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-sm fw-bold">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+      
+          </div>
+      
+
+  </div>
+  <!-- {% endblock %} -->
+</div>
