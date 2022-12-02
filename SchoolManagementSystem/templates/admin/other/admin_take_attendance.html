@@ -89,19 +89,20 @@
             <th scope="col">Take Attendance</th>
           </tr>
         </thead>
-       
-        <form method="post" >
-          {%csrf_token%}
-            {% for student in students %}
+          {% for student in students %}
           <tbody class="text-center">
             <tr>
               <td name="student">{{student.full_name|title}}</td>
-              <td style="width: 40%;">{{atten_student.status}}</td>
+              <td>
+                <a href="#"><button type="button" class="btn btn-danger btn-sm fw-bold"   style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Absent</button></a>
+                <span class="p-1"></span>
+                <a href="#"><button type="button" class="btn btn-success btn-sm fw-bold"   style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">Present</button></a>       
+                <!-- <a href=""><i class="text-success fs-4 bi bi-check-square-fill "></i></a><span class="p-1"></span>
+                <a href="" onclick="return confirm('Are you sour you want to delete? ')" ><i class="text-danger fs-4 bi bi-trash-fill"></i></a> -->
+            </td>
             </tr>
             {% endfor %}  
           </tbody>
-
-        </form>
         {% else %}
           <!-- else part -->
           <div class="row">

@@ -82,20 +82,18 @@
 
       <table class="table table-bordered mt-3">
         <div>{% include 'include/alert.html' %}</div>
-        {% if students %}
+        {% if student_attendance %}
         <thead>
           <tr class="text-center fs-5 text-muted">
               <th scope="col">Student Name</th>
-              <th scope="col">Student Roll No</th>
-              <th scope="col">Present / Absent</th>
+              <th scope="col">Present - Absent</th>
           </tr>
       </thead>
-        {% for student in students %}
+        {% for stu in student_attendance %}
         <tbody class="text-center">
             <tr>
-                <td>{{student.full_name|title}}</td>
-                <td>{{student.roll_no}}</td>
-                <td>{{student.status}}</td>
+                <td>{{stu.student.full_name|title}}</td>
+                <td>{{stu.status}}</td>
             </tr>
         </tbody>
         {% endfor %}

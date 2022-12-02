@@ -62,6 +62,4 @@ urlpatterns = [
     path('adminviewattendance/<str:divisions>/',views.AdminViewAttendance,name='admin_view_attendance'),
     path('adminnotice/', views.AdminNotice, name='admin_notice'),
     path('adminnoticedelete/<int:pk>/',views.AdminDeleteNotice,name='admin_delete_notice')
-
-
 ]

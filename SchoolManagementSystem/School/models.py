@@ -159,5 +159,5 @@ class Attendance(models.Model):
     status = models.CharField(choices=attendance_satus,
                               default='present', max_length=10)
 
-    # def __str__(self):
-    #     return self.student.first_name
+    def __str__(self):
+        return str(self.student)

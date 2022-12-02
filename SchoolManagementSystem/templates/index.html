@@ -32,7 +32,7 @@
         <a href="{% url 'student_click' %}">
           <img src="{% static 'image\features\studentadmissions.png' %}" class="img-fluid img-thumbnail" alt="" />
         </a>
-        <p class="text-center mt-4 fw-bold text-muted">Student</p>
+        <p class="text-center mt-4 fs-5 text-muted">Student</p>
       </div>
     </div>
     <div class="col-3">
@@ -40,7 +40,7 @@
         <a href="{% url 'teacher_click' %}">
           <img src="{% static 'image/features/staff.png' %}" class="img-fluid img-thumbnail" alt="" />
         </a>
-        <p class="text-center mt-4 fw-bold text-muted">Teacher</p>
+        <p class="text-center mt-4 fs-5 text-muted">Teacher</p>
       </div>
     </div>
     <div class="col-3">
@@ -48,34 +48,7 @@
         <a href="{% url 'admin_click' %}">
           <img src="{% static 'image/features/dashboards.png' %}" class="img-fluid img-thumbnail" alt="" />
         </a>
-        <p class="text-center mt-4 fw-bold text-muted">Admin</p>
-      </div>
-    </div>
-  </div>
-  <!-- Features end -->
-
-  <!-- Features start 2 -->
-  <div class="row justify-content-center mt-5">
-    <div class="col-sm-3">
-      <div class="features-img">
-        <a href="#">
-          <img src="{% static 'image\features\management-reports.png' %}" class="img-fluid img-thumbnail" alt="" />
-        </a>
-        <p class="text-center mt-4 fw-bold text-muted">Attendance</p>
-      </div>
-    </div>
-    <div class="col-3">
-      <div class="features-img">
-        <a href="#">
-          <img src="{% static 'image/features/communications.png' %}" class="img-fluid img-thumbnail" alt="" /></a>
-        <p class="text-center mt-4 fw-bold text-muted">Notic</p>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="features-img">
-        <a href="#"><img src="{% static 'image\features\payments-acounting.png' %}"
-            class="img-fluid img-thumbnail" alt="" /></a>
-        <p class="text-center mt-4 fw-bold text-muted">Fees</p>
+        <p class="text-center mt-4 fs-5 text-muted">Admin</p>
       </div>
     </div>
   </div>
@@ -122,30 +95,65 @@
     <div class="col-sm-2">
       <div class="features-img">
         <a href=""><img src="{% static 'image\Highlights\highlyreliable.png' %}" class="img-fluid" alt="" /></a>
+        <p class="text-muted mt-1 ">Highly Reliable</p>
       </div>
     </div>
     <div class="col-sm-2">
       <div class="features-img">
         <a href=""><img src="{% static 'image\Highlights\customersupport.png' %}" class="img-fluid" alt="" /></a>
+        <p class="text-muted mt-1 ">
+          Customer Support</p>
       </div>
     </div>
     <div class="col-sm-2">
       <div class="features-img">
         <a href=""><img src="{% static 'image\Highlights\safeandsecure.png' %}" class="img-fluid" alt="" /></a>
+        <p class="text-muted mt-1 ">Safe & Secure</p>
       </div>
     </div>
     <div class="col-sm-2">
       <div class="features-img">
         <a href=""><img src="{% static 'image\Highlights\easy-to-use.png' %}" class="img-fluid" alt="" /></a>
+        <p class="text-muted mt-1 ">Easy To Use</p>
       </div>
     </div>
     <div class="col-sm-2">
       <div class="features-img">
         <a href=""><img src="{% static 'image\Highlights\costeffective.png' %}" class="img-fluid" alt="" /></a>
+        <p class="text-muted mt-1 ">Cost Effective</p>
       </div>
     </div>
   </div>
   <!-- Highlights end -->
+
+  <div class="row mt-5">
+    <div class="col mt-5">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Contact</p>
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-evenly mt-3">
+    <div class="col-sm-4">
+      <p class="text-muted fs-5 fw-bold">School Management System</p>
+      <p class="text-muted ">"Academy Front" is an easy, focused and comprehensive software solution for educational institutions of all sizes.</p>
+    </div>
+    <div class="col-sm-2">
+      <p class="fs-4 fw-bold text-muted fst-italic">MENU</p>
+      <div>
+        <a href="" class="text-muted text-decoration-none ">Features</a><br>
+        <a href="" class="text-muted text-decoration-none ">Blogs</a><br>
+        <a href="" class="text-muted text-decoration-none ">Highlights</a>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="fs-4 fw-bold text-muted fst-italic">GET IN TOUCH</p>
+      <a href="#" class="text-muted text-decoration-none "><i class="p-1 bi bi-envelope-fill"></i> info.zeeshanshaikh@gmail.com</a><br>
+      <a href="#" class="text-muted text-decoration-none "><i class="p-1 bi bi-geo-alt-fill"></i> Mumbai, Maharashtra</a><br>
+      <a href="#" class="text-muted text-decoration-none "><i class="p-1 bi bi-telephone-fill"></i> +91 1010101010</a>
+    </div>
+  </div>
+
 </div>
 
 {% endblock %}

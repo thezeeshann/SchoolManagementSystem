@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required,user_passes_test
 from django.core.exceptions import PermissionDenied
 from django.db.models import Sum
+from django.db.models import Q
 # Create your views here.
 
 
@@ -600,22 +601,8 @@ def AdminAttendance(request):
 @user_passes_test(check_role_admin)
 def AdminTakeAttendance(request,divisions):
     students = Student.objects.all().filter(divisions=divisions)
-    atten_student = AttendanceForm()
-    if request.method == "POST":
-        atten_student = AttendanceForm(request.POST)
-        if atten_student.is_valid():
-            student = atten_student.cleaned_data['student']
-            status = atten_student.cleaned_data['status']
-            print(student,status)
-            atten_student.save()
-            return redirect('admin_attendance')
-        else:
-            messages.error(request,'Something Wrong')
-    else:
-        atten_student = AttendanceForm()
     context = {
-        'students':students,
-        'atten_student':atten_student
+        'students':students
     }
     return render(request,'admin/other/admin_take_attendance.html',context)
 
@@ -624,8 +611,10 @@ def AdminTakeAttendance(request,divisions):
 @user_passes_test(check_role_admin)
 def AdminViewAttendance(request,divisions):
     students = Student.objects.all().filter(divisions=divisions)
+    student_attendance = Attendance.objects.all().filter( Q(status__icontains="Present") | Q(status__icontains="Absent") )
     context = {
-        'students':students
+        'students':students,
+        'student_attendance':student_attendance
     }
     return render(request,'admin/other/admin_view_attendance.html',context)
 
