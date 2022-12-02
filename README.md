@@ -18,7 +18,7 @@ If you have any feedback. please reach out to me at info.zeeshanshaikh@gmail.com
 
 # 🎞
 
-![screencapture-127-0-0-1-8000-2022-12-02-20_54_44](https://user-images.githubusercontent.com/88139550/205327087-eab3234d-62c8-43f4-89d4-050e1e82e2b4.png)
+![screencapture-127-0-0-1-8000-2022-12-02-20_56_55](https://user-images.githubusercontent.com/88139550/205327530-41b6ceae-fb5e-45bb-8632-e53b0ca569ec.png)
 
 ![screencapture-127-0-0-1-8000-adminclick-2022-11-05-13_15_50](https://user-images.githubusercontent.com/88139550/200179762-71104df2-22a7-4564-a61d-62fe3a2d5be9.png)
 
