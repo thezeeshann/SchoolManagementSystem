@@ -1,0 +1,45 @@
+{% extends 'base.html' %}  {% load static %} {% load widget_tweaks %} {% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    
+    <!-- side navbar -->
+    {% include 'student/student_sidenav.html' %}
+
+    <!-- cards -->
+    <div class="col-sm-8 mt-5">
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="row">
+            <div class="col">
+              <p class="text-center fs-3 fw-bold text-muted fst-italic">Please enter date for attendance</p>
+              <ul class="nav justify-content-center border-bottom mb-3"></ul>
+            </div>
+          </div>
+    
+          <div>{% include 'include/alert.html' %}</div>
+    
+          <div class="row mt-3">
+            <div class="col-md-12">
+              <div class="form-group">
+    
+                {% render_field form.date class="form-control" placeholder="Enter date mm/dd/yyyy" %}
+              </div>
+    
+            </div>
+    
+          </div>
+          <div class="row mt-3">
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary btn-sm fw-bold">Submit</button>
+                  </div>
+                </div>
+          </form>
+
+    </div>
+    
+
+  </div>
+  {% endblock %}
+</div>

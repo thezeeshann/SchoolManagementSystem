@@ -1,0 +1,190 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <p class="text-center fs-3 fw-bold text-muted fst-italic mt-4">New Admission</p>
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+  </div>
+
+  <style>
+    .id_phone_number_0{
+      color: red;
+    }
+  </style>
+
+  <div class="row mt-3">
+    <div class="col-sm-8 offset-2">
+      <div class="card boder border-3 p-3">
+        <div>{% include 'include/alert.html' %}</div>
+        <div class="card-body">
+          <form action="{% url 'student_signup' %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">First Name</label>
+                  {{form.first_name}}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Last Name</label>
+                  {{form.last_name}}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Username</label>
+                  {{form.username}}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Email Address</label>
+                  {{form.email}}
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Enter Password</label>
+                  {{form.password}}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Confirm Password</label>
+                  {{form.confirm_password}}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Select Gender</label>
+                  {{stu_form.gender}}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Date Of Birth</label>
+                  {{stu_form.date_of_birth}}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Select Divisions</label>
+                  <div class="select">{{stu_form.divisions}}</div>
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Roll No</label>
+                  {{stu_form.roll_no}}
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Fees</label>
+                  {{stu_form.fees}}
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Phone Number</label>
+                  {{stu_form.phone_number}}
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="">Profile Picture</label>
+                  {{stu_form.profile_picture}}
+                </div>
+              </div>
+            </div>
+            <div>
+              <!-- <ul class="errorlist"> -->
+              {% for field in form %}
+              {% if field.errors %}
+              {% for error in field.errors %}
+              <span class="fw-bold" style="color: rgb(236, 64, 64);">{{error}}</span><br>
+              {% endfor %}
+              {% endif %}
+              {% endfor %}
+              <span class="fw-bold" style="color: rgb(233, 63, 63);">{{form.non_field_errors}}</span><br>
+              <!-- </ul> -->
+            </div>
+            <div class="row mt-3">
+              <p class="text-center fw-bold text-muted fst-italic">
+                Already Have An Account ?
+                <a href="{% url 'studnet_login' %}">Login here</a>
+              </p>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-sm fw-bold">
+                  Take Admission
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script>
+
+
+  var category = document.getElementById('id_fees');
+  document.getElementById('id_divisions').onchange = function() {
+    var optionSelected = this.options[this.selectedIndex];
+    switch (optionSelected.value) {
+      case 'one':
+        category.value = 1000;
+        break;
+      case 'two':
+        category.value = 2000;
+        break;
+      case 'three':
+        category.value = 3000;
+        break;
+      case 'four':
+        category.value = 4000;
+        break;
+      case 'five':
+        category.value = 5000;
+        break;
+      case 'six':
+        category.value = 6000;
+        break;
+      case 'seven':
+        category.value = 7000;
+        break;
+      case 'eight':
+        category.value = 8000;
+        break;
+      case 'nine':
+        category.value = 9000;
+        break;
+      case 'ten':
+        category.value = 10000;
+        break;
+    }
+  }
+
+
+  </script>
+
+{% endblock %}
+

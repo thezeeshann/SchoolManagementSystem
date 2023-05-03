@@ -1,0 +1,119 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-evenly">
+        <!-- side navbar -->
+
+        {% include 'admin/side_nav.html' %}
+        <!-- cards -->
+        <!-- cards -->
+        <div class="col-sm-8 mt-5">
+
+            <div class="row">
+                <div class="col">
+                    <p class="text-center fs-3 fw-bold text-muted fst-italic">Update Student </p>
+                    <ul class="nav justify-content-center border-bottom mb-3"></ul>
+                </div>
+            </div>
+           
+            <div class="row mt-4">
+                <div class="col">
+                  <div class="card boder border-3 p-3">
+                    <div>{% include 'include/alert.html' %}</div>
+                    <div class="card-body">
+                      <form method="POST" novalidate>
+                        {% csrf_token %}
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">First Name</label>
+                              {{form.first_name}}
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Last Name</label>
+                              {{form.last_name}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Username</label>
+                              {{form.username}}
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Email Address</label>
+                              {{form.email}}
+                            </div>
+                          </div>
+            
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Enter Password</label>
+                              {{form.password}}
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Confirm Password</label>
+                              {{form.confirm_password}}
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Select Divisions</label>
+                              {{stu_form.divisions}}
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Roll No</label>
+                              {{stu_form.roll_no}}
+                            </div>
+                          </div>
+            
+                        </div>
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Fees</label>
+                              {{stu_form.fees}}
+                            </div>
+                          </div>
+                          <div class="col-sm-6">
+                            <div class="mb-3">
+                              <label for="">Contact No</label>
+                              {{stu_form.phone_number}}
+                            </div>
+                          </div>
+            
+                        </div>
+                        <div class="row mt-3">
+                          <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-sm fw-bold">
+                              Update Student
+                            </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+           
+        </div>
+
+
+        <!-- <div class="row"></div> -->
+    </div>
+</div>
+{% endblock %}

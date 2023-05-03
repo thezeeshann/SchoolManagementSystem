@@ -1,0 +1,51 @@
+{% extends 'base.html' %}  {% load static %} {% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    
+    <!-- side navbar -->
+    {% include 'student/student_sidenav.html' %}
+
+    <!-- cards -->
+    <div class="col-sm-8">
+
+
+        <div class="row mt-5">
+            <div class="col">
+              <p class="text-center fs-3 fw-bold text-muted fst-italic">Your Attendance of date <a href="#">{{date}}</a></p>
+              <ul class="nav justify-content-center border-bottom mb-3"></ul>
+            </div>
+          </div>
+    
+          <table class="table table-bordered mt-3">
+            <div>{% include 'include/alert.html' %}</div>
+            {% if student_attendance %}
+            <thead>
+              <tr class="text-center fs-6 text-muted">
+                  <th scope="col">Student Name</th>
+                  <th scope="col">Present - Absent</th>
+              </tr>
+          </thead>
+            {% for stu_atten in student_attendance %}
+            <tbody class="text-center">
+                <tr>
+                    <td>{{stu_atten.student.full_name|title}}</td>
+                    <td>{{stu_atten.status|title}}</td>
+                </tr>
+            </tbody>
+            {% endfor %}
+            {% else %}
+            <div class="row">
+              <div class="col">
+                <p class="text-center fw-bold text-muted mt-3">No Student found yet!</p>
+              </div>
+            </div>
+            {% endif %}
+        </table>
+
+    </div>
+    
+
+  </div>
+  {% endblock %}
+</div>

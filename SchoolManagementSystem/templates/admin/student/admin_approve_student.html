@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-evenly">
+        <!-- side navbar -->
+
+        {% include 'admin/side_nav.html' %}
+        <!-- cards -->
+        <!-- cards -->
+        <div class="col-sm-8 mt-5">
+
+
+
+            <div class="row">
+                <div class="col">
+                    <p class="text-center fs-3 fw-bold text-muted fst-italic">Student Approval</p>
+                    <ul class="nav justify-content-center border-bottom mb-3"></ul>
+                </div>
+            </div>
+           
+                <table class="table table-bordered mt-3">
+                    {% if student_approve %}
+                    <thead>
+                        <tr class="text-center fs-5 text-muted">
+                            <th scope="col">Name</th>
+                            <th scope="col">Class</th>
+                            <th scope="col">Contact</th>
+                            <th scope="col">Fees</th>
+                            <th scope="col">Roll No</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    {% for stu_app in student_approve %}
+                    <tbody class="text-center">
+                        <tr>
+                            <td>{{stu_app.full_name|title}}</td>
+                            <td>{{stu_app.divisions|title}}</td>
+                            <td>{{stu_app.phone_number}}</td>
+                            <td>{{stu_app.fees|intcomma}}</td>
+                            <td>{{stu_app.roll_no}}</td>
+                            <td>
+                                <a href="{% url 'approve_approve' stu_app.id %}"><i class="text-success fs-4 bi bi-check-square-fill "></i></a><span class="p-1"></span>
+                                <a href="{% url 'delete_student' stu_app.id  %}"  onclick="return confirm('Are you sour you want to delete? ')"><i class="text-danger fs-4 bi bi-trash-fill"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                    {% endfor %}
+                    {% else %}
+                    <div class="row">
+                        <div class="col">
+                            <p class="text-center fw-bold text-muted mt-3">No account approval found yet!</p>
+                        </div>
+                    </div>
+                    {% endif %}
+                </table>
+           
+           
+        </div>
+
+
+        <!-- <div class="row"></div> -->
+    </div>
+</div>
+{% endblock %}

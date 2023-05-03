@@ -1,0 +1,159 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- custom csss link-->
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/index.css' %}" />
+</head>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="image">
+        <img src="{% static 'image\oct_blog_post2.png' %}" class="img-fluid" alt="" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Features start -->
+  <div class="row mt-5" id="Features">
+    <div class="col">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Features</p>
+    </div>
+  </div>
+  <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+  <!-- Features image -->
+
+  <div class="row justify-content-center mt-5">
+    <div class="col-3">
+      <div class="features-img">
+        <a href="{% url 'student_click' %}" target="_blank">
+          <img src="{% static 'image\features\studentadmissions.png' %}" class="img-fluid img-thumbnail" alt="" />
+        </a>
+        <p class="text-center mt-3 fs-5 text-muted">Student</p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="features-img">
+        <a href="{% url 'teacher_click' %}" target="_blank">
+          <img src="{% static 'image/features/staff.png' %}" class="img-fluid img-thumbnail" alt="" />
+        </a>
+        <p class="text-center mt-3 fs-5 text-muted">Teacher</p>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="features-img">
+        <a href="{% url 'admin_click' %}" target="_blank">
+          <img src="{% static 'image/features/dashboards.png' %}" class="img-fluid img-thumbnail" alt="" />
+        </a>
+        <p class="text-center mt-3 fs-5 text-muted">Admin</p>
+      </div>
+    </div>
+  </div>
+  <!-- Features end -->
+
+  <!-- Blogs start -->
+  <div class="row mt-5" id="Blogs">
+    <div class="col">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Blogs</p>
+    </div>
+  </div>
+  <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+  <div class="row justify-content-center mt-5">
+    <div class="col-sm-5">
+      <p class="fs-5 text-muted">
+      The "School Management System" has been developed to override the problems
+      prevailing in the practicing manual system. 
+      </p>
+      <p class="fs-5 text-muted">
+        This software is supported to eliminate and
+      sometimes reduce the hardships faced by this existing system.
+      </p>
+      <p class="fs-5 text-muted">
+        Moreover, this system is
+      designed for the particular need of the company to carry out operations in a smooth and
+      effective manner.
+      </p>
+    </div>
+    <div class="col-sm-5">
+      <img src="{% static 'image/mac-book.png' %}" class="img-fluid" alt="" />
+    </div>
+  </div>
+  <!-- Blogs end -->
+
+  <!-- Highlights start -->
+  <div class="row mt-5" id="Highlights">
+    <div class="col mt-5">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Highlights</p>
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-evenly mt-3">
+    <div class="col-sm-2">
+      <div class="features-img">
+        <center><a href=""><img src="{% static 'image\Highlights\highlyreliable.png' %}" class="img-fluid" alt="" /></a></center>
+        <p class="text-muted mt-1 text-center">Highly Reliable</p>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <center><a href=""><img src="{% static 'image\Highlights\safeandsecure.png' %}" class="img-fluid" alt="" /></a></center>
+        <p class="text-muted mt-1 text-center">Safe & Secure</p>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <center><a href=""><img src="{% static 'image\Highlights\easy-to-use.png' %}" class="img-fluid" alt="" /></a></center>
+        <p class="text-muted mt-1 text-center">Easy To Use</p>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <center><a href=""><img src="{% static 'image\Highlights\costeffective.png' %}" class="img-fluid" alt="" /></a></center>
+        <p class="text-muted mt-1 text-center">Cost Effective</p>
+      </div>
+    </div>
+    <div class="col-sm-2">
+      <div class="features-img">
+        <center><a href=""><img src="{% static 'image\Highlights\customersupport.png' %}" class="img-fluid" alt="" /></a></center>
+        <p class="text-muted mt-1 text-center">Customer Support</p>
+      </div>
+    </div>
+  </div>
+  <!-- Highlights end -->
+
+  <div class="row mt-5" id="Contact">
+    <div class="col mt-5">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic">Contact</p>
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+    </div>
+  </div>
+
+  <div class="row justify-content-evenly mt-3">
+    <div class="col-sm-4">
+      <p class="text-muted fs-5 fw-bold">School Management System</p>
+      <p class="text-muted"> The "School Management System" has been developed to override the problems
+        prevailing in the practicing manual system. </p>
+    </div>
+    <div class="col-sm-2">
+      <p class="fs-5 fw-bold text-muted ">MENU</p>
+      <div>
+        <a href="#Features" class="text-muted text-decoration-none ">Features</a><br>
+        <a href="#Blogs" class="text-muted text-decoration-none ">Blogs</a><br>
+        <a href="#Contact" class="text-muted text-decoration-none ">Contact</a><br>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <p class="fs-5 fw-bold text-muted ">GET IN TOUCH</p>
+      <a href="#" class="text-muted text-decoration-none "><i class="p-1 bi bi-envelope-fill"></i> schoolmanagement@gmail.com</a><br>
+      <a href="#" class="text-muted text-decoration-none "><i class="p-1 bi bi-geo-alt-fill"></i> Mumbai, Maharashtra</a><br>
+      <a href="#" class="text-muted text-decoration-none "><i class="p-1 bi bi-telephone-fill"></i> +91 1010101010</a>
+    </div>
+  </div>
+
+</div>
+
+{% endblock %}

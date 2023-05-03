@@ -1,0 +1,51 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    <!-- side navbar -->
+
+    {% include 'teacher/teacher_sidenav.html' %}
+
+        <!-- cards -->
+        <div class="col-sm-8 mt-5">
+
+
+            <div class="row">
+              <div class="col">
+                <p class="text-center fs-3 fw-bold text-muted fst-italic">Announce Something</p>
+                <ul class="nav justify-content-center border-bottom mb-3"></ul>
+              </div>
+            </div>
+      
+            <div class="card mt-3">
+              <div class="card-body  mt-3">
+                {% include 'include/alert.html' %}
+                <form method="POST">
+                  {% csrf_token %}
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <div class="mb-3">
+                        <label for="email" class="fs-5 text-muted">Write Your Message Here...</label>
+                        <textarea class="form-control" aria-label="With textarea" name="message" id="" cols="5"
+                          rows="2"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row mt-3">
+                    <div class="text-center">
+                      <button type="submit" class="btn btn-primary btn-sm fw-bold">Submit</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+      
+          </div>
+      
+
+  </div>
+</div>
+
+
+  {% endblock %}

@@ -1,0 +1,128 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    <!-- side navbar -->
+
+    {% include 'teacher/teacher_sidenav.html' %}
+
+        <!-- cards -->
+        <div class="col-sm-8 mt-5">
+
+          <div class="row">
+            <div class="col">
+              <p class="text-center fs-3 fw-bold text-muted fst-italic">Student Attendance</p>
+              <ul class="nav justify-content-center border-bottom mb-3"></ul>
+            </div>
+          </div>
+    
+          <table class="table table-bordered mt-3">
+            <thead>
+              <tr class="text-center fs-5 text-muted">
+                <th scope="col">Class</th>
+                <th scope="col">Take Attendance</th>
+                <th scope="col">View Attendance</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <td>One</td>
+                <td><a href="{% url 'teacher_take_attendance' 'one' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'one' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Two</td>
+                <td><a href="{% url 'teacher_take_attendance' 'two' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'two' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Three</td>
+                <td><a href="{% url 'teacher_take_attendance' 'three' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'three' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Four</td>
+                <td><a href="{% url 'teacher_take_attendance' 'four' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'four' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Five</td>
+                <td><a href="{% url 'teacher_take_attendance' 'five' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'five' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Six</td>
+                <td><a href="{% url 'teacher_take_attendance' 'six' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'six' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Seven</td>
+                <td><a href="{% url 'teacher_take_attendance' 'seven' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'seven' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Eight</td>
+                <td><a href="{% url 'teacher_take_attendance' 'eight' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'eight' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Nine</td>
+                <td><a href="{% url 'teacher_take_attendance' 'nine' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'nine' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+              <tr>
+                <td>Ten</td>
+                <td><a href="{% url 'teacher_take_attendance' 'ten' %}">
+                    <center><i class="text-primary fs-4 bi bi-plus-circle"></i></center>
+                  </a></td>
+                <td><a href="{% url 'teacher_view_attendance' 'ten' %}">
+                    <center><i class="text-danger fs-4 bi bi-eye"></i></center>
+                  </a></td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+      
+
+  </div>
+</div>
+
+
+  {% endblock %}

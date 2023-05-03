@@ -1,0 +1,67 @@
+{% load static %}
+
+<style>
+  .avtaar-img {
+    clip-path: circle();
+    width: 200px;
+    height: auto;
+  }
+</style>
+
+
+{% url 'student_admin' as student_admin %}
+{% url 'student_attendance' as student_attendance %}
+
+<div class="col-sm-4 mt-5">
+    <main class="d-flex flex-nowrap">
+      <div class="d-flex flex-column flex-shrink-0 p-3 bg-light border border-1" style="width: 300px; height: auto">
+        <div class="text-center">
+          {% for image in student %}
+            {% if image.profile_picture %}
+            <img src="{{ image.profile_picture.url }}" class="img-fluid avtaar-img" alt="">
+            {% else %}
+              <img src="{% static 'image\2.png' %}" class="img-fluid avtaar-img" alt="">
+            {% endif %}
+          {% endfor %}
+        </div>
+        <span class="fs-5 mt-3 fw-bold text-center text-muted">{{user.full_name|title}}</span>
+        <hr />
+        <ul class="nav nav-pills flex-column mb-auto">
+
+          <li class="text-center">
+            <a href="{% url 'student_admin' %}" class="
+            {% if request.path == student_admin %}
+            nav-link link-white mt-1 fw-bold fs-5 active
+            {% else %}
+            nav-link link-dark mt-1 fw-bold fs-5 text-muted
+            {% endif %}
+            ">
+              <i class="bi bi-house fs-4 p-1 {% if request.path == student_admin %} text-white {% else %} text-dark {% endif %}"></i>
+              Dashboard
+            </a>
+          </li>
+
+
+          <li class="text-center">
+            <a href="{% url 'student_attendance' %}" class="
+            {% if request.path == student_attendance %}
+            nav-link link-white mt-1 fw-bold fs-5 active
+            {% else %}
+            nav-link link-dark mt-1 fw-bold fs-5 text-muted
+            {% endif %}
+            ">
+              <i class="bi bi-receipt-cutoff fs-4 p-1 {% if request.path == student_attendance %} text-white {% else %} text-dark {% endif %}"></i>
+              Attendance
+            </a>
+          </li>
+          
+          <li class="text-center">
+            <a href="{% url 'logout' %}" class="nav-link link-dark mt-1 fw-bold fs-5 text-muted">
+              <i class="bi bi-lock text-dark fs-4 p-1"></i>
+              Log Out
+            </a>
+          </li>
+        </ul>
+      </div>
+    </main>
+  </div>

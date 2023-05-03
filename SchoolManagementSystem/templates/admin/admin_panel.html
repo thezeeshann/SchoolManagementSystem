@@ -1,0 +1,128 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    <!-- side navbar -->
+
+    {% include 'admin/side_nav.html' %}
+    <!-- cards -->
+    <div class="col-sm-8 mt-5">
+      <!-- 1 card start  -->
+      <div class="row">
+        <div class="col-sm-3">
+          <a href="{% url 'admin_view_teacher' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">Total Teacher <br><br> <span>{{teachers_counts}}</span> </div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-person-circle"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_view_student' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">Total Student <br><br> <span>{{student_count}} </div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-person-circle"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_view_teacher_salary' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">Teacher Salary <br><br> <span>{{teachers_salary}}</span></div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-currency-rupee"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_view_student_fees' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">Student Fees <br><br> <span>{{student_fees}} </span></div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-currency-rupee"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+
+        <!-- 2 card start -->
+
+        <div class="col-sm-3">
+          <a href="{% url 'admin_approve_teacher' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">Pnding Teacher <br><br> <span>{{pending_teacher}} </span> </div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-arrow-repeat"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_approve_student' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">Pnding Student <br><br> <span>{{pending_student}} </span> </div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-arrow-repeat"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_approve_teacher' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">pending Salary <br><br> <span>{{pending_teacher_salary}} </span> </div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-arrow-repeat"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_approve_student' %}" class="text-decoration-none">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem; max-height: 150px">
+              <div class="card-header text-center fw-bold">pending Fees <br><br> <span>{{pending_student_fees}}</span></div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-arrow-repeat"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+      <div>{% include 'include/alert.html' %}</div>
+      <div class="row mt-3">
+        <div class="col">
+          <p class="text-center fs-3 fw-bold text-muted fst-italic">Notice</p>
+        </div>
+      </div>
+
+      <div class="row">
+        {% for noti in notice %}
+        <div class="col-sm-8 offset-2 mt-3">
+          <div class="card">
+            <h6 class="card-header fw-bold text-muted">
+              {{noti.date|date:"F d, Y"}}
+              <span class="float-end fw-bold text-muted">By -  {{ noti.post_by.username|title}}</span>
+            </h6>
+            <div class="card-body">
+              <h6 class="card-title text-muted">
+                {{noti.message|capfirst}}
+                <span class="float-end fw-bold text-muted"><a href="{% url 'admin_delete_notice' noti.id %}" onclick="return confirm('Are you sour you want to delete? ')" ><i class="text-danger fs-4 bi bi-trash-fill"></i></a></span>
+              </h6>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <!-- <div class="row"></div> -->
+</div>
+
+{% endblock %}

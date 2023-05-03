@@ -1,0 +1,60 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-evenly">
+        <!-- side navbar -->
+
+        {% include 'admin/side_nav.html' %}
+        <!-- cards -->
+        <!-- cards -->
+        <div class="col-sm-8 mt-5">
+
+
+
+            <div class="row">
+                <div class="col">
+                    <p class="text-center fs-3 fw-bold text-muted fst-italic">All Student</p>
+                    <ul class="nav justify-content-center border-bottom mb-3"></ul>
+                </div>
+            </div>
+
+            <table class="table table-bordered mt-3">
+                
+                <thead>
+                    <tr class="text-center text-muted">
+                        <th scope="col">Name</th>
+                        <th scope="col">Gender</th>
+                        <th scope="col">Date Of Birth</th>
+                        <th scope="col">Class</th>
+                        <th scope="col">Contact</th>
+                        <th scope="col">Fees</th>
+                        <th scope="col">Roll No</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                {% for all_stu in all_student %}
+                <tbody class="text-center">
+                    <tr>
+                        <td>{{all_stu.user.username|title}}</td>
+                        <td>{{all_stu.gender|title}}</td>
+                        <td>{{all_stu.date_of_birth}}</td>
+                        <td>{{all_stu.divisions|title}}</td>
+                        <td>{{all_stu.phone_number}}</td>
+                        <td>{{all_stu.fees|intcomma}}</td>
+                        <td>{{all_stu.roll_no}}</td>
+                        <td>
+                            <a href="{% url 'update_student_school' all_stu.id %}"><i class="text-primary fs-4 bi bi-pencil-square"></i></a><span class="p-1"></span>
+                            <a href="{% url 'delete_student_school' all_stu.id %}" onclick="return confirm('Are you sour you want to delete? ')" ><i class="text-danger fs-4 bi bi-trash-fill"></i></a>
+                        </td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+           
+        </div>
+
+
+        <!-- <div class="row"></div> -->
+    </div>
+</div>
+{% endblock %}

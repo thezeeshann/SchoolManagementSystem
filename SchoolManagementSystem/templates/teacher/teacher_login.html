@@ -1,0 +1,46 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <p class="text-center fs-3 fw-bold text-muted fst-italic mt-4">Teacher Login</p>
+    <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col-sm-8 offset-2">
+      <div class="card boder p-3 border-3">
+        <div>{% include 'include/alert.html' %}</div>
+        <div class="card-body">
+          <form action="{% url 'teacher_login' %}" method="POST">
+            {% csrf_token %}
+            <div class="row">
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="email">Email Address</label>
+                  <input name="email" type="email" class="form-control" id="exampleFormControlInput1" />
+                </div>
+              </div>
+              <div class="col-sm-6">
+                <div class="mb-3">
+                  <label for="password">Password</label>
+                  <input name="password" type="password" class="form-control" id="exampleFormControlInput1" />
+                </div>
+              </div>
+            </div>
+            <div class="row mt-3">
+              <p class="text-center fw-bold text-muted fst-italic">
+                Don't Have An Account ?
+                <a href="{% url 'teacher_signup' %}">Singup here</a>
+              </p>
+              <p class="text-end fw-bold text-muted fst-italic"><a href="{% url 'forgot_password' %}">Forgot Password ?</a></p>
+              <div class="text-center">
+                <button type="submit" class="btn btn-primary btn-sm fw-bold">Login</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

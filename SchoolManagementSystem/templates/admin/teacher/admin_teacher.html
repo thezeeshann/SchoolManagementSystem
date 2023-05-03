@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    <!-- side navbar -->
+
+    {% include 'admin/side_nav.html' %}
+
+    <!-- cards -->
+    <div class="col-sm-8 mt-5">
+      <!-- 1 card start  -->
+      <div class="row">
+        <div class="col-sm-3">
+          <a href="{% url 'admin_view_teacher' %}" class="text-decoration-none">
+            <div
+              class="card text-white bg-dark mb-3"
+              style="max-width: 18rem; max-height: 150px"
+            >
+              <div class="card-header text-center fw-bold">All Teacher</div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-eye"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_add_teacher'  %}" class="text-decoration-none">
+            <div
+              class="card text-white bg-dark mb-3"
+              style="max-width: 18rem; max-height: 150px"
+            >
+              <div class="card-header text-center fw-bold">Add Teacher</div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-plus-circle"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_approve_teacher' %}" class="text-decoration-none">
+            <div
+              class="card text-white bg-dark mb-3"
+              style="max-width: 18rem; max-height: 150px"
+            >
+              <div class="card-header text-center fw-bold">Approv Teacher</div>
+              <div class="card-body">
+                <center> <i class="fs-4 bi bi-patch-check"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-3">
+          <a href="{% url 'admin_view_teacher_salary' %}" class="text-decoration-none">
+            <div
+              class="card text-white bg-dark mb-3"
+              style="max-width: 18rem; max-height: 150px"
+            >
+              <div class="card-header text-center fw-bold">Teacher Salary</div>
+              <div class="card-body">
+                <center><i class="fs-4 bi bi-currency-rupee"></i></center>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- <div class="row"></div> -->
+  </div>
+</div>
+{% endblock %}

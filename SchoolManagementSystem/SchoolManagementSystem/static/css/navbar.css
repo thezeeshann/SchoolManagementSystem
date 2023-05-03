@@ -1,0 +1,36 @@
+nav {
+  background: white;
+  padding: 10px 0px 0px 40px;
+  border: 1px solid rgb(255, 255, 255);
+  border-left: none;
+  border-right: none;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+nav ul li.logo {
+  flex: 1;
+  font-size: 25px;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+nav ul div.items {
+  display: inline-flex;
+  padding: 0 100px;
+  font-size: 20px;
+  font-weight: 550;
+  cursor: pointer;
+}
+
+nav ul div.items a {
+  text-decoration: none;
+  font-size: 20px;
+  padding: 0 15px;
+}

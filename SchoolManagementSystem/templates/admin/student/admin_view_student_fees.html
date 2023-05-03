@@ -1,0 +1,44 @@
+{% extends 'base.html' %} {% load static %} {% load humanize %} {% block content %}
+
+<div class="container mt-5">
+    <div class="row justify-content-evenly">
+        <!-- side navbar -->
+
+        {% include 'admin/side_nav.html' %}
+        <!-- cards -->
+        <!-- cards -->
+        <div class="col-sm-8 mt-5">
+
+
+
+            <div class="row">
+                <div class="col">
+                    <p class="text-center fs-3 fw-bold text-muted fst-italic">Student Fees</p>
+                    <ul class="nav justify-content-center border-bottom mb-3"></ul>
+                </div>
+            </div>
+          
+            <table class="table table-bordered mt-3">
+                <thead>
+                    <tr class="text-center fs-5 text-muted">
+                        <th scope="col">Name</th>
+                        <th scope="col">Fees</th>
+                    </tr>
+                </thead>
+                {% for all_stu_fees in all_student_fees %}
+                <tbody class="text-center">
+                    <tr>
+                        <td>{{all_stu_fees.full_name|title}}</td>
+                        <td>{{all_stu_fees.fees|intcomma}}</td>
+                    </tr>
+                </tbody>
+                {% endfor %}
+            </table>
+            
+        </div>
+
+
+        <!-- <div class="row"></div> -->
+    </div>
+</div>
+{% endblock %}

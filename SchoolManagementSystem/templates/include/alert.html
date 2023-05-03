@@ -1,0 +1,21 @@
+{% load static %}
+{% if messages %}
+{% for message in messages %}
+
+<div class="alert alert-{{message.tags}} show-notification alert-dismissible fade show" role="alert">
+  <div class="text-center">
+    <strong>{{message}}</strong>
+  
+  </div>
+</div>
+
+{% endfor %}
+{% endif %}
+
+
+<script>
+  setTimeout(function () {
+    $(".show-notification").fadeOut("slow");
+  }, 5000);
+  
+</script>

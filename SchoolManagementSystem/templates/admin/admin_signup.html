@@ -1,0 +1,82 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+      <p class="text-center fs-3 fw-bold text-muted fst-italic mt-4">New Admin</p>
+      <ul class="nav justify-content-center border-bottom pb-3 mb-3"></ul>
+    </div>
+  
+    <div class="row mt-3">
+      <div class="col-sm-8 offset-2">
+        <div class="card boder p-3 border-3">
+          <div>{% include 'include/alert.html' %}</div>
+          <div class="card-body">
+            <form action="{% url 'admin_signup' %}" method="POST" novalidate>
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label for="">First Name</label>
+                    {{form.first_name}}
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label for="">Last Name</label>
+                    {{form.last_name}}
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label for="">Email</label>
+                   {{form.email}}
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label for="">Username</label>
+                   {{form.username}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label for="">Enter Password</label>
+                    {{form.password}}
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="mb-3">
+                    <label for="">Confirm Password</label>
+                      {{form.confirm_password}}
+                  </div>
+                </div>
+              </div>
+              <div>
+                <!-- <ul class="errorlist"> -->
+                {% for field in form %}
+                {% if field.errors %}
+                {% for error in field.errors %}
+                <span class="fw-bold" style="color: rgb(236, 64, 64);">{{error}}</span><br>
+                {% endfor %}
+                {% endif %}
+                {% endfor %}
+                <span class="fw-bold" style="color: rgb(233, 63, 63);">{{form.non_field_errors}}</span><br>
+                <!-- </ul> -->
+              </div>
+              <div class="row mt-3">
+                <p class="text-center fw-bold text-muted fst-italic">Already Have An Account ? <a href="{% url 'admin_login' %}">Login here</a></p>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary btn-sm fw-bold">Sign Up</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
