@@ -1,4 +1,5 @@
 from django import forms
+import re
 from .models import Student, Teacher, Notice, Attendance, User
 
 class UserForm(forms.ModelForm):
@@ -37,17 +38,27 @@ class UserForm(forms.ModelForm):
             self.fields[field].widget.attrs['class'] = 'form-control'
 
 
+
+phone_regex = re.compile(r'^\+?1?\d{9,15}$')
+
 class DateInput(forms.DateInput):
     input_type = 'date'
 
 class StudentForm(forms.ModelForm):
-
+    phone_number = forms.CharField(max_length=10)
     class Meta:
         model = Student
         fields = ('profile_picture','gender','date_of_birth','divisions', 'phone_number', 'roll_no', 'fees')
         widgets = {
             'date_of_birth': DateInput(),
         }
+
+    # validate phone number
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        if not phone_regex.match(phone_number):
+            raise forms.ValidationError('Invalid phone number')
+        return phone_number
 
  
     def __init__(self, *args, **kwargs):
@@ -64,12 +75,20 @@ class StudentForm(forms.ModelForm):
 
 
 class TeacherForm(forms.ModelForm):
+    phone_number = forms.CharField(max_length=10)
     class Meta:
         model = Teacher
         fields = ('profile_picture','gender','date_of_birth','salary', 'phone_number')
         widgets = {
             'date_of_birth': DateInput(),
         }
+
+        # validate phone number
+    def clean_phone_number(self):
+        phone_number = self.cleaned_data['phone_number']
+        if not phone_regex.match(phone_number):
+            raise forms.ValidationError('Invalid phone number')
+        return phone_number
 
     def __init__(self, *args, **kwargs):
         super(TeacherForm, self).__init__(*args, **kwargs)
