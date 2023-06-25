@@ -9,13 +9,17 @@
         Management
         System</a></li>
     <div class="items text-muted">
-      <li><a href="{% if user.is_authenticated %} {%  url 'sample_view' %} {% else %} {% url 'index_page' %} {% endif %}" class="text-muted">Home</a></li>
+      {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}" class="text-muted "><span class="text-decoration-underline text-primary">Logout</span></a></li>
+      {% else %}
+      <li><a href="#Home" class="text-muted">Home</a></li>
       <li><a href="#Features" class="text-muted">Features</a></li>
       <li><a href="#Blogs" class="text-muted">Blogs</a></li>
       <li><a href="#Contact" class="text-muted">Contact</a></li>
-      {% if user.is_authenticated %}
-        <li><a href="{% url 'logout' %}" class="text-muted "><span class="text-decoration-underline text-primary">Logout</span></a></li>
       {% endif %}
+      <!-- {% if user.is_authenticated %}
+        <li><a href="{% url 'logout' %}" class="text-muted "><span class="text-decoration-underline text-primary">Logout</span></a></li>
+      {% endif %} -->
     </div>
   </ul>
 </nav >
