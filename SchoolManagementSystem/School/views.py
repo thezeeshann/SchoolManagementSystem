@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from .forms import UserForm, StudentForm, TeacherForm,NoticeForm,AttendanceForm,AskDateForm
 from .models import User, Student, Teacher, Notice,Attendance
 from django.contrib import messages
@@ -212,8 +212,11 @@ def StudentLogin(request):
         return redirect('student_admin')
     elif request.method == "POST":
         email = request.POST['email']
+        print(email)
         password = request.POST['password']
+        print(password)
         user = authenticate(email=email, password=password)
+        print(user)
         if user is not None:
             if user.role == 1:
                 login(request, user)
@@ -251,7 +254,8 @@ def StudentAttendance(request):
         form = AskDateForm(request.POST)
         if form.is_valid():
             date = form.cleaned_data['date']
-            student_attendance = Attendance.objects.filter(date=date).filter(Q(status__icontains="present") | Q(status__icontains="absent"))
+            student_data = Student.objects.get(user_id=request.user.id)
+            student_attendance = Attendance.objects.filter(date=date).filter(Q(status__icontains="present") | Q(status__icontains="absent"), Q(student=student_data) )
             context = {
             'date':date,
             'student':student,
@@ -283,7 +287,7 @@ def TeacherSingup(request):
         return redirect('teacher_admin')
     elif request.method == "POST":
         form = UserForm(request.POST)
-        teac_form = TeacherForm(request.POST)
+        teac_form = TeacherForm(request.POST,request.FILES)
         if form.is_valid() and teac_form.is_valid():
             username = form.cleaned_data['username']
             first_name = form.cleaned_data['first_name']
@@ -434,8 +438,8 @@ def TeacherViewAttendance(request,divisions):
         form = AskDateForm(request.POST)
         if form.is_valid():
             date = form.cleaned_data['date']
-            student_attendance  = Attendance.objects.filter(date=date).filter(Q(status__icontains="present") | Q(status__icontains="absent"))
             student_data = Student.objects.all().filter(divisions=divisions)
+            student_attendance  = Attendance.objects.filter(date=date).filter(Q(status__icontains="present") | Q(status__icontains="absent"), Q(student__divisions=divisions))
             context={
                 'date':date,
                 'divisions':divisions,
@@ -449,6 +453,37 @@ def TeacherViewAttendance(request,divisions):
     else:
         return render(request,'teacher/teacher_view_attendance_ask_date.html',{'divisions':divisions,'form':form,'teacher':teacher})
     return render(request,'teacher/teacher_view_attendance_ask_date.html',{'divisions':divisions,'form':form,'teacher':teacher})
+
+
+@login_required(login_url='teacher_login')
+@user_passes_test(check_role_teacher)
+def TeacherEditeProfile(request):
+    teacher = Teacher.objects.filter(user_id=request.user.id)
+    teacher_profile = get_object_or_404(Teacher,user=request.user)
+    if request.method == "POST":
+        user_form = UserForm(request.POST,instance=request.user)
+        profile_form = TeacherForm(request.POST,request.FILES,instance=teacher_profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password)
+            user.save()
+            teacher = profile_form.save(commit=False)
+            teacher.user_form = user_form
+            teacher.save()
+            messages.success(request, 'Your profile has been updated.')
+            # return redirect('teacher_admin')
+        else:
+            messages.error(request,"Something Wrong")
+    else:
+        user_form = UserForm(instance=request.user)
+        profile_form = TeacherForm(instance=teacher_profile)
+    context = {
+        'teacher':teacher,
+        'user_form':user_form,
+        'profile_form':profile_form
+    }
+    return render(request,'teacher/teacher_edite_profile.html',context)
+
 
 
 # ------------------------------------------- Admin --------------------------------------------------------------------------
@@ -570,7 +605,7 @@ def AdminViewStudent(request):
 def AdminAddStudent(request):
     if request.method == "POST":
         form = UserForm(request.POST)
-        stu_form = StudentForm(request.POST)
+        stu_form = StudentForm(request.POST,request.FILES)
         if form.is_valid() and stu_form.is_valid():
             username = form.cleaned_data['username']
             first_name = form.cleaned_data['first_name']
@@ -738,7 +773,7 @@ def DeleteTeacherSchool(request,pk):
 def AdminAddTeacher(request):
     if request.method == "POST":
         form = UserForm(request.POST)
-        teac_form = TeacherForm(request.POST)
+        teac_form = TeacherForm(request.POST,request.FILES)
         if form.is_valid() and teac_form.is_valid():
             username = form.cleaned_data['username']
             first_name = form.cleaned_data['first_name']
@@ -879,8 +914,8 @@ def AdminViewAttendance(request,divisions):
         form = AskDateForm(request.POST)
         if form.is_valid():
             date = form.cleaned_data['date']
-            student_attendance  = Attendance.objects.filter(date=date).filter(Q(status__icontains="present") | Q(status__icontains="absent"))
             student_data = Student.objects.all().filter(divisions=divisions)
+            student_attendance  = Attendance.objects.filter(date=date).filter(Q(status__icontains="present") | Q(status__icontains="absent"), Q(student__divisions=divisions))
             context={
                 'date':date,
                 'divisions':divisions,
