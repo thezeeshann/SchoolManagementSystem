@@ -169,6 +169,9 @@ class Notice(models.Model):
     def __str__(self):
         return str(self.post_by)
 
+    def __str__(self):
+        return self.message
+    
 
 attendance_satus = (
     ('present', 'Present'),
@@ -183,6 +186,6 @@ class Attendance(models.Model):
 
     def __str__(self):
         return str(self.student)
-    
-    # def attendance_satus_verbose(self):
-    #     return dict(Attendance.attendance_satus)[self.status]
+
+    def __str__(self):
+        return self.status
