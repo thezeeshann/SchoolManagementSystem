@@ -31,6 +31,7 @@ urlpatterns = [
     path('teacher_attendance/', views.TeacherAttendance, name='teacher_attendance'),
     path('teacher_take_attendance/<str:divisions>/',views.TeacherTakeAttendance,name='teacher_take_attendance'),
     path('teacher_view_attendance/<str:divisions>/',views.TeacherViewAttendance,name='teacher_view_attendance'),
+    path('teacher_edite_profile/',views.TeacherEditeProfile,name="teacher_edite_profile"),
 
     # -------------------------- Admin ----------------------
     path('admin_click/', views.AdminClick, name='admin_click'),
