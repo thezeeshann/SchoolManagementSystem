@@ -34,7 +34,7 @@
                 {% for teac in teacher %}
                 <tbody class="text-center">
                     <tr>
-                        <td>{{teac.user.username|title}}</td>
+                        <td>{{teac.user.full_name|title}}</td>
                         <td>{{teac.gender}}</td>
                         <td>{{teac.salary|intcomma}}</td>
                         <td>{{teac.date_of_birth}}</td>

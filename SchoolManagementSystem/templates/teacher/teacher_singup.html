@@ -22,7 +22,7 @@
       <div class="card boder p-3 border-3">
         <div>{% include 'include/alert.html' %}</div>
         <div class="card-body">
-          <form action="{% url 'teacher_signup' %}" method="POST" novalidate>
+          <form action="{% url 'teacher_signup' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="row">
               <div class="col-sm-6">
@@ -77,7 +77,7 @@
               </div>
               <div class="col-sm-6">
                 <div class="mb-3">
-                  <label for="">Date Of Birth.</label>
+                  <label for="">Date Of Birth</label>
                   {{teac_form.date_of_birth}}
                 </div>
               </div>

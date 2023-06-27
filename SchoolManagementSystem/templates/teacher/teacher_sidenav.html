@@ -13,6 +13,7 @@
 {% url 'teacher_admin' as teacher_admin %}
 {% url 'teacher_attendance' as teacher_attendance %}  
 {% url 'teacher_notice' as teacher_notice %}
+{% url 'teacher_edite_profile' as teacher_edite_profile %}
 
 
 <div class="col-sm-4 mt-5">
@@ -45,6 +46,18 @@
             </a>
             </li>
         
+            <li class="text-center">
+              <a href="{% url 'teacher_edite_profile' %}" class="
+              {% if request.path == teacher_edite_profile %}
+              nav-link link-white mt-1 fw-bold fs-5 active
+              {% else %}
+              nav-link link-dark mt-1 fw-bold fs-5 text-muted
+              {% endif %}
+              ">
+              <i class="bi bi-pencil-square fs-4 p-1 {% if request.path == teacher_edite_profile %} text-white {% else %} text-dark {% endif %}"></i>
+              Edit Profile
+              </a>
+          </li>
 
         <li class="text-center">
           <a href="{% url 'teacher_attendance' %}" class="

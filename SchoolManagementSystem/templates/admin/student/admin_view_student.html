@@ -35,7 +35,7 @@
                 {% for all_stu in all_student %}
                 <tbody class="text-center">
                     <tr>
-                        <td>{{all_stu.user.username|title}}</td>
+                        <td>{{all_stu.user.full_name|title}}</td>
                         <td>{{all_stu.gender|title}}</td>
                         <td>{{all_stu.date_of_birth}}</td>
                         <td>{{all_stu.divisions|title}}</td>

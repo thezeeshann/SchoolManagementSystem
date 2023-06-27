@@ -1,0 +1,118 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+
+<div class="container mt-5">
+  <div class="row justify-content-evenly">
+    <!-- side navbar -->
+
+    {% include 'teacher/teacher_sidenav.html' %}
+
+        <!-- cards -->
+        <div class="col-sm-8 mt-5">
+
+
+            <div class="row">
+              <div class="col">
+                <p class="text-center fs-3 fw-bold text-muted fst-italic">Update Profile</p>
+                <ul class="nav justify-content-center border-bottom mb-3"></ul>
+              </div>
+            </div>
+      
+            <div class="row mt-4">
+              <div class="col">
+                <div class="card boder p-3 border-3">
+                  <div>{% include 'include/alert.html' %}</div>
+                  <div class="card-body">
+                    <form method="POST" >
+                      {% csrf_token %}
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">First Name</label>
+                            {{user_form.first_name}}
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Last Name</label>
+                            {{user_form.last_name}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Email Address</label>
+                            {{user_form.email}}
+                          </div>
+                        </div>
+          
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Username</label>
+                            {{user_form.username}}
+                          </div>
+                        </div>
+          
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Enter Password</label>
+                            {{user_form.password}}
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Confirm Password</label>
+                            {{user_form.confirm_password}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Select Gender</label>
+                            {{profile_form.gender}}
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Date Of Birth</label>
+                            {{profile_form.date_of_birth}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Salary</label>
+                            {{profile_form.salary}}
+                          </div>
+                        </div>
+                        <div class="col-sm-6">
+                          <div class="mb-3">
+                            <label for="">Contact No</label>
+                            {{profile_form.phone_number}}
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-3">
+                        <div class="text-center">
+                          <button type="submit" class="btn btn-primary btn-sm fw-bold">Update Teacher</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+      
+
+  </div>
+</div>
+
+
+  {% endblock %}
